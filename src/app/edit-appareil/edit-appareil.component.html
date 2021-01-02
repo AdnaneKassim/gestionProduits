@@ -1,0 +1,27 @@
+<div class="row">
+<div class="col-sm-8 col-sm-offset-2">
+  <!--angular va prendre l'evenement ngSumet va le lier à la méthode onSubmit
+  ajout d'un reference local qui permet à angular de faire un réference
+  à un elem DOM depuis le dom , ce ref et de type ngForm qui sera paramétre
+la methode sera definit en edit-appareil.compent-->
+  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <div class="form-group">
+     <label for="name">
+      nom de l'appareil
+     </label>
+     <!--la directive required d'angular permet d'indiquer que ce champs sera requis-->
+     <input type="text" id="name" class="form-control" name="name" ngModel required>
+    </div>
+    <div class="form-group">
+      <label for="status">
+        l'etat de l'appareil
+      </label>
+      <select id="status" class="form-control" name="status" [ngModel]=defaultOnOff>
+        <option value="alumer">alumer</option>
+        <option value="eteint">eteint</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="f.invalid">Enregistrer</button>
+  </form>
+</div>
+</div>

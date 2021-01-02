@@ -1,0 +1,21 @@
+<div class="col-xs-12">
+  <h2>Mes appareils</h2>
+  <!--peut jouer sur la format d'affichage date soit short soit date -->
+  <p>mise à jour {{lastUpdate |async|date :'short'}}</p>
+  <ul class="list-group" >
+    <div *ngFor="let tab of appareils; let i = index">
+    <app-appareil
+           [indexOfAppareil]="i"
+          [appareilName]="tab.name" [appareilStatus]="tab.status"
+          [id]="tab.id"
+    ></app-appareil>
+  </div>
+  </ul>
+  <!-- cette classe à boostrap dispbled permet desactiver le button
+  on mit les crochets pour lire les valeures de la prepriéter
+  et entre parenthése pour réagir à un évenement on a creer une méthode
+qui sera traiter en app.compenment.ts-->
+  <button class="btn btn-success"
+  (click)="onAllumer()">tout alumer</button>
+   <button class="btn btn-danger" (click)="onEteindre()" >tout eteindre</button>
+</div>
