@@ -24,6 +24,7 @@ const appRoutes: Routes=[
   {path: 'edit', canActivate: [AuthGuard], component: EditAppareilComponent},
   {path: 'auth', component: AuthComponent},
   {path: 'users', component: UserListComponent},
+  {path: 'new-users', component: NewUserComponent},
 //ce route est vide va orienter vers 4200
   {path: '', component: AppareilViewComponent},
   {path: 'not-found', component: FourOhFourComponent},

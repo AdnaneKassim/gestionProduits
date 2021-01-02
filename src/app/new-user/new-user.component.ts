@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../services/User.service';
 import { User } from '../User.model';
@@ -21,10 +21,11 @@ export class NewUserComponent implements OnInit {
   }
 initForm(){
   this.userForm= this.formBuilder.group( {
-    firstName: '',
-    lastName: '',
-    email: '',
-    drinkPreference: ''
+    //aprés l'import de validator on va rendre ce champs required
+    firstName: ['',Validators.required],
+    lastName: ['',Validators.required],
+    email: ['',[Validators.required, Validators.email]],
+    drinkPreference: ['',Validators.required]
   });
 }
 onSubmitForm(){
@@ -36,7 +37,7 @@ onSubmitForm(){
      formValue['drinkPreference']
    );
    this.userService.addUser(newUser);
-   this.router.navigate()
+   this.router.navigate(['/users']);
 
 }
 }
