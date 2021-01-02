@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserService } from '../services/User.service';
+import { User } from '../User.model';
 
 @Component({
   selector: 'app-new-user',
@@ -8,9 +11,11 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class NewUserComponent implements OnInit {
    userForm: FormGroup;
-   // FormBuilder nous permet de creer des formulaire avec des
+   //FormBuilder nous permet de creer des formulaire avec des
    //maniere trés simple
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+              private userService: UserService,
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -21,5 +26,17 @@ initForm(){
     email: '',
     drinkPreference: ''
   });
+}
+onSubmitForm(){
+   const formValue= this.userForm.value;
+   const newUser= new User(
+     formValue['firstName'],
+     formValue['lastName'],
+     formValue['email'],
+     formValue['drinkPreference']
+   );
+   this.userService.addUser(newUser);
+   this.router.navigate()
+
 }
 }
