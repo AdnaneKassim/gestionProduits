@@ -54,8 +54,7 @@ const appRoutes: Routes=[
     AuthGuard,
     UserService
   ],
-  bootstrap: [AppComponent,
-  AppareilComponent
+  bootstrap: [AppComponent
 ]
 })
 export class AppModule { }

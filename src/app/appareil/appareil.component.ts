@@ -19,17 +19,16 @@ export class AppareilComponent implements OnInit {
   getStatus(){
     return this.appareilStatus;
   }
-  getColor(){
-    if(this.appareilStatus=='alumer')
-    return 'green';
-    if(this.appareilStatus=='eteint')
-    return 'red';
+
+  getColor(): String {
+     return (this.appareilStatus==='alumer')? 'green': 'red';
   }
+
   onSwitchOn(){
     this.appareilService.switchOnOne(this.indexOfAppareil);
   }
   onSwitchOff(){
     this.appareilService.switchOffOne(this.indexOfAppareil);
   }
-  
+
 }

@@ -18,16 +18,17 @@ export class NewUserComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
+    this.initForm();
   }
-initForm(){
-  this.userForm= this.formBuilder.group( {
-    //aprés l'import de validator on va rendre ce champs required
-    firstName: ['',Validators.required],
-    lastName: ['',Validators.required],
-    email: ['',[Validators.required, Validators.email]],
-    drinkPreference: ['',Validators.required]
-  });
-}
+  initForm(){
+    this.userForm= this.formBuilder.group( {
+      //aprés l'import de validator on va rendre ce champs required
+      firstName: ['',Validators.required],
+      lastName: ['',Validators.required],
+      email: ['',[Validators.required, Validators.email]],
+      drinkPreference: ['',Validators.required]
+    });
+  }
 onSubmitForm(){
    const formValue= this.userForm.value;
    const newUser= new User(
