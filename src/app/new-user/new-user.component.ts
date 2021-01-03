@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../services/User.service';
 import { User } from '../User.model';
@@ -26,7 +26,8 @@ export class NewUserComponent implements OnInit {
       firstName: ['',Validators.required],
       lastName: ['',Validators.required],
       email: ['',[Validators.required, Validators.email]],
-      drinkPreference: ['',Validators.required]
+      drinkPreference: ['',Validators.required],
+      hobbies: this.formBuilder.array([])
     });
   }
 onSubmitForm(){
@@ -35,10 +36,22 @@ onSubmitForm(){
      formValue['firstName'],
      formValue['lastName'],
      formValue['email'],
-     formValue['drinkPreference']
+     formValue['drinkPreference'],
+     // cette une condition s'il existe vvous mettez sa valeur sinon vide
+     formValue['hobbies'] ? formValue['hobbies'] : []
    );
    this.userService.addUser(newUser);
    this.router.navigate(['/users']);
+}
 
+getHobbies() {
+  //on va récupérer forme array sous format de forme array de hobbies
+  //à raison de typage
+  return this.userForm.get['hobbies'] as FormArray;
+}
+//pour ajouter un hobby
+onAddHobby(){
+  const newHobbyControl= this.formBuilder.control('', Validators.required);
+  this.getHobbies().push(newHobbyControl);
 }
 }
