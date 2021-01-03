@@ -1,5 +1,5 @@
 <div class="col-sm8 col-sm-offset-2">
- <form [formGroup]="userForm" (ngSubmit)="onSubmitForm()">
+ <form [formGroup]="userForm"  (ngSubmit)="onSubmitForm()">
   <div class="form-group">
     <label for="firstName"> Prenom </label>
     <input type="text" class="form-control" id="firstName" formControlName="firstName">
@@ -19,16 +19,15 @@
       <option value="pepsi">Pepsi</option>
     </select>
   </div>
-  <div formArrayName="hobbies" >
+  <form [formGroup]="hobbiesForm" >
+  <div formArrayName="hobbies">
     <h3>Vos hobbies</h3>
-    <div *ngIf = "getHobbies()">
-    <div class="form-group" *ngFor="let hobbyControl of getHobbies().controls; let i = index;">
+    <div class="form-group" *ngFor="let hobbyControl of this.hobbiesForm.get['hobbies'].controls; let i = index;">
       <input type="text" class="form-control" [formControlName]="i">
     </div>
-
-    <button type="button" class="btn btn-success" (click)="onAddHobby()">Ajouter un hobbies</button>
+    <button type="button" class="btn btn-success" (click)="addHobbiesFormGroup()">Ajouter un hobbies</button>
   </div>
-  </div>
+</form>
   <!--on a ajouter disabled afin que si le formulaire n'est pas valiser le button rest invalid-->
   <button class="btn btn-primary" type="submit" [disabled]="userForm.invalid">Soumettre</button>
  </form>
